@@ -1,107 +1,476 @@
-:root {
-  --max-width: 1100px;
-  --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
-    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
-    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
-
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-
-  --primary-glow: conic-gradient(
-    from 180deg at 50% 50%,
-    #16abff33 0deg,
-    #0885ff33 55deg,
-    #54d6ff33 120deg,
-    #0071ff33 160deg,
-    transparent 360deg
-  );
-  --secondary-glow: radial-gradient(
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0)
-  );
-
-  --tile-start-rgb: 239, 245, 249;
-  --tile-end-rgb: 228, 232, 233;
-  --tile-border: conic-gradient(
-    #00000080,
-    #00000040,
-    #00000030,
-    #00000020,
-    #00000010,
-    #00000010,
-    #00000080
-  );
-
-  --callout-rgb: 238, 240, 241;
-  --callout-border-rgb: 172, 175, 176;
-  --card-rgb: 180, 185, 188;
-  --card-border-rgb: 131, 134, 135;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-
-    --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
-    --secondary-glow: linear-gradient(
-      to bottom right,
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0.3)
-    );
-
-    --tile-start-rgb: 2, 13, 46;
-    --tile-end-rgb: 2, 5, 19;
-    --tile-border: conic-gradient(
-      #ffffff80,
-      #ffffff40,
-      #ffffff30,
-      #ffffff20,
-      #ffffff10,
-      #ffffff10,
-      #ffffff80
-    );
-
-    --callout-rgb: 20, 20, 20;
-    --callout-border-rgb: 108, 108, 108;
-    --card-rgb: 100, 100, 100;
-    --card-border-rgb: 200, 200, 200;
-  }
-}
-
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+select {
+    border: none;
+    background: none;
+    color: #ddd;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+    text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+body {
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: 1px;
+    font-size: 62.5%;
+}
+
+body,
+button,
+select {
+    font-family: "Titillium Web", sans-serif;
+}
+
+.wrap {
+    padding: 3%;
+    background: #24263e;
+}
+
+.flex {
+    display: flex;
+}
+
+h1 {
+    color: #8185ab;
+    font-weight: 400;
+    font-size: 2.5rem;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1;
+    color: #b2b2b6;
+}
+
+.submit_btn {
+    margin-bottom: 20px;
+    border: none;
+}
+
+.select {
+    margin-left: 15px;
+    background: #474a71;
+    padding: 4px 10px;
+    border-radius: 2px;
+    color: #ddd;
+    font-size: 14px;
+}
+
+.flex.header {
+    margin: 0 auto 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #393b4d;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.graph_head {
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.graph_wrap {
+    padding: 3%;
+    box-sizing: border-box;
+    background: #2c3359;
+    border-radius: 15px;
+    border-bottom: 3px solid #1d233f;
+    border-top: 2px solid #3a4578;
+}
+
+input[type="number"] {
+    border: none;
+    border-bottom: 1px solid #888;
+    padding: 5px 5px 3px;
+    background: none;
+}
+
+.addData_form div {
+    margin-bottom: 17px;
+}
+
+.logout {
+    background: none;
+    border: none;
+    padding: 0;
+    width: inherit;
+    color: #8a8c9d;
+}
+
+.txt_link {
+    color: #8a8c9d;
+    font-size: 15px;
+    text-align: center;
+    display: block;
+    margin: 20px auto 0;
+    text-decoration: underline;
+}
+
+.addData_form p label:not(:last-child) {
+    margin-right: 10px;
+}
+
+.addData_form p {
+    margin-left: 5px;
+    padding-left: 12px;
+    border-left: 1px solid #888;
+}
+
+.footer {
+    padding: 0 3% 0;
+    font-size: 15px;
+    font-weight: 100;
+    color: #8a8c9d;
+}
+
+.auth_wrap {
+    height: 100vh;
+    position: relative;
+    background: #24263e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: hidden;
+}
+
+.auth_area {
+    width: 36%;
+    box-sizing: border-box;
+    border-top: 2px solid #343f70;
+    position: absolute;
+    background: #2c3359;
+    padding: 3%;
+    box-shadow: 0 25px 20px -28px #000000;
+    border-radius: 3px;
+    z-index: 5;
+}
+
+.auth_area h2 {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1.5rem;
+    color: #ddd;
+}
+
+.auth_area input {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    padding: 5px;
+    background: none;
+}
+
+.addData_form label input[type="radio"] {
+    margin-right: 4px;
+}
+
+.auth_area button {
+    margin: 3rem auto 0;
+    display: block;
+    border: none;
+    letter-spacing: 1.5px;
+}
+
+.auth_area form div {
+    margin-bottom: 1.5rem;
+}
+
+.auth_area form div {
+    margin-bottom: 1.5rem;
+    display: flex;
+}
+
+.auth_area form div label {
+    width: 35%;
+    color: #ddd;
+}
+
+.auth_area form div input {
+    width: 65%;
+}
+
+input {
+    color: #ddd;
+}
+
+.animate {
+    position: relative;
+    border: none;
+}
+
+.graph_wrap h3 {
+    font-size: 1.5rem;
+    color: #8a8c9d;
+}
+
+.graph_wrap h3:first-letter {
+    color: #22e59c;
+}
+
+
+
+
+/* Modale settings */
+.ReactModal__Overlay {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+.ReactModalPortal button {
+    margin: 2rem auto 0;
+    display: block;
+}
+
+.ReactModal__Content {
+    position: absolute;
+    background: #fff;
+    border-radius: 4px;
+    inset: auto !important;
+}
+
+.ReactModalPortal h3 {
+    text-align: center;
+}
+
+.auth_area.wel {
+    text-align: center;
+}
+
+.flex.header button {
+    margin: 0;
+}
+
+.links, button {
+    text-decoration: none;
+    display: block;
+    padding: 17px 20px;
+    cursor: pointer;
+    width: 70%;
+    background: #21E59C;
+    color: #03241A;
+    font-size: 19px;
+    text-align: center;
+    transition: .3s;
+}
+
+.animate:before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 4px;
+    left: 0;
+    bottom: 0;
+    background: #106b4a;
+    transition: .3s;
+}
+
+.animate:hover {
+    transform: translateY(4px);
+}
+
+.animate:hover:before {
+    height: 0;
+}
+
+.graph_wrap h3 span {
+    font-size: 19px;
+    padding-left: 5px;
+}
+
+.addData_form {
+    color: #8a8c9d;
+    margin-bottom: 3rem;
+}
+
+.auth_area form {
+    font-size: 18px;
+}
+
+.auth_area.wel p {
+    font-size: 17px;
+}
+
+.loading_wrap,
+.wave_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.loading_wrap div {
+    width: 40%;
+}
+
+
+
+@media screen and (min-width: 769px) {
+    .min_flex {
+        display: flex;
+        margin-bottom: 2%;
+    }
+
+    .graph_wrap {
+        width: 49%;
+    }
+
+    .addData_form {
+        font-size: 19px;
+    }
+
+    .modal_ttr {
+        font-size: 19px;
+        text-align: center;
+    }
+
+    .ReactModal__Content {
+        padding: 20px;
+        width: 50%;
+    }
+
+    .lottie_wrap {
+        width: 50%;
+        margin: auto;
+    }
+
+    .ReactModalPortal h3 {
+        font-size: 25px;
+    }
+
+    .min_flex .graph_wrap:first-child {
+        margin-right: 2%;
+    }
+
+    .donut {
+        width: 85%;
+        margin: auto;
+    }
+
+    .auth_area {
+        max-width: 600px;
+    }
+
+    button {
+        width: 180px;
+    }
+    .auth_area .links {
+        margin: 2rem auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .graph_wrap {
+        margin-bottom: 2rem;
+    }
+
+    .wel_area {
+        width: 80%;
+        height: 35%;
+    }
+
+    .header button {
+        padding: 4% 5%;
+    }
+
+    .auth_area {
+        width: 87%;
+        padding: 6% 3%;
+    }
+
+    .lottie_wrap {
+        width: 70%;
+        margin: auto;
+    }
+
+    .graph_wrap h3 {
+        font-size: 7vw;
+        font-weight: 600;
+    }
+
+    .select,
+    select {
+        font-size: 20px;
+    }
+
+    .addData_form {
+        font-size: 22px;
+    }
+
+    .addData_form h4 {
+        font-size: 6.5vw;
+    }
+
+    .addData_form p {
+        display: flex;
+    }
+
+    .addData_form p label {
+        width: 100%;
+    }
+
+    .addData_form label input[type="radio"] {
+        margin-right: 6px;
+    }
+
+    .addData_form input[type="number"] {
+        padding: 3%;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    button {
+        width: 80%;
+        margin: auto;
+        display: block;
+        padding: 5% 7%;
+        font-size: 22px;
+    }
+    .footer {
+        padding: 5% 3%;
+        font-size: 19px;
+        text-align: center;
+    }
+    .addData_form div {
+        margin-bottom: 10%;
+    }
+    .auth_area.wel > * {
+        margin-bottom: 8%;
+    }
+    .auth_area .animate {
+        width: 90%;
+        box-sizing: border-box;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .graph_head {
+        display: block;
+    }
+
+    .select {
+        margin: 2% 0;
+    }
+
+    h2 {
+        font-size: 9vw;
+    }
+
+    .header button {
+        font-size: 5vw;
+        width: 50%;
+        padding: 4%;
+    }
 }
