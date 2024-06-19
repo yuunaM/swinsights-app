@@ -87,35 +87,49 @@ export default function ContactTypeGraph() {
     };
 
     const createGradient = (ctx, chartArea, color1, color2) => {
+        if (!ctx || !chartArea) {
+            return null; 
+        }
+
         const gradient = ctx.createLinearGradient(chartArea.left, 0, chartArea.right, 0);
         gradient.addColorStop(0, color1);
         gradient.addColorStop(1, color2);
         return gradient;
     };
-
-    const datasets = () => {
-        const dataValues = Object.values(CTGraphData);
-
-        return ['Call', 'Mail', 'Visit'].map((contactType, index) => {
-            let gradient;
-            if (chartRef.current) {
-                const chart = chartRef.current;
-                const ctx = chart.ctx;
-                const chartArea = chart.chartArea;
-                gradient = createGradient(ctx, chartArea, GraphGradients[index].start, GraphGradients[index].end);
-            }
-            return {
-                label: contactType,
-                data: dataValues.map(data => data[contactType] || 0),
-                backgroundColor: gradient,
-                borderColor: gradient,
+    
+    const data = {
+        labels: CTLabels,
+        datasets: [
+            {
+                label: 'Call',
+                data: CTGraphData.map(data => data['Call'] || 0),
+                backgroundColor: createGradient(chartRef.current?.ctx, chartRef.current?.chartArea, GraphGradients[0].start, GraphGradients[0].end),
+                borderColor: createGradient(chartRef.current?.ctx, chartRef.current?.chartArea, GraphGradients[0].start, GraphGradients[0].end),
                 borderWidth: 2,
                 fill: false,
                 tension: 0.4
-            };
-        });
+            },
+            {
+                label: 'Mail',
+                data: CTGraphData.map(data => data['Mail'] || 0),
+                backgroundColor: createGradient(chartRef.current?.ctx, chartRef.current?.chartArea, GraphGradients[1].start, GraphGradients[1].end),
+                borderColor: createGradient(chartRef.current?.ctx, chartRef.current?.chartArea, GraphGradients[1].start, GraphGradients[1].end),
+                borderWidth: 2,
+                fill: false,
+                tension: 0.4
+            },
+            {
+                label: 'Visit',
+                data: CTGraphData.map(data => data['Visit'] || 0),
+                backgroundColor: createGradient(chartRef.current?.ctx, chartRef.current?.chartArea, GraphGradients[2].start, GraphGradients[2].end),
+                borderColor: createGradient(chartRef.current?.ctx, chartRef.current?.chartArea, GraphGradients[2].start, GraphGradients[2].end),
+                borderWidth: 2,
+                fill: false,
+                tension: 0.4
+            }
+        ]
     };
-    
+
     return (
         <div className='graph_wrap'>
             <div className='flex graph_head'>
@@ -133,10 +147,7 @@ export default function ContactTypeGraph() {
             {CTGraphData.length > 0 ? (
                 <Line
                     ref={chartRef}
-                    data={{
-                        labels: CTLabels,
-                        datasets: datasets()
-                    }}
+                    data={data}
                     options={{
                         scales: {
                             y: {

@@ -153,7 +153,7 @@ export default function ProfitRateGraph() {
 
     const datasets = () => {
         let profitMarginGradient, grossProfitGradient, costGradient;
-
+    
         if (chartRef.current) {
             const chart = chartRef.current;
             const ctx = chart.ctx;
@@ -162,9 +162,10 @@ export default function ProfitRateGraph() {
             grossProfitGradient = createGradient(ctx, chartArea, GraphGradients[1].start, GraphGradients[1].end);
             costGradient = createGradient(ctx, chartArea, GraphGradients[2].start, GraphGradients[2].end);
         }
+    
         return [
             {
-                type: 'line',
+                type: 'line' as const,
                 label: 'Profit rate(%)',
                 data: profitGraphData,
                 borderColor: profitMarginGradient,
@@ -177,14 +178,14 @@ export default function ProfitRateGraph() {
                 yAxisID: 'y2',
             },
             {
-                type: 'bar',
+                type: 'line' as const,
                 label: 'Profit',
                 data: grossProfitGraphData,
                 backgroundColor: grossProfitGradient,
                 yAxisID: 'y1',
             },
             {
-                type: 'bar',
+                type: 'line' as const,
                 label: 'Cost',
                 data: cost,
                 backgroundColor: costGradient,
@@ -192,6 +193,8 @@ export default function ProfitRateGraph() {
             }
         ];
     };
+    
+    
 
     return (
         <div className='graph_wrap'>
