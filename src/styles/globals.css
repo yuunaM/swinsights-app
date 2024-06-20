@@ -365,10 +365,6 @@ input {
     .auth_area .links {
         margin: 2rem auto;
     }
-    .auth_area input::placeholder {
-        font-size: 17px;
-        color: rgb(255 255 255 / 30%);
-    }
 }
 
 @media screen and (max-width: 768px) {
@@ -461,6 +457,13 @@ input {
     .graph_wrap {
         border-radius: 4px;
     }
+    .auth_area input::placeholder {
+        font-size: 17px;
+        color: rgb(255 255 255 / 30%);
+    }
+    .wrap.graph_area {
+        padding: 3%;
+    }
 }
 
 @media screen and (max-width: 430px) {
@@ -482,6 +485,6 @@ input {
         padding: 4%;
     }
     .wave_wrap > div {
-        width: 300% !important;
+        width: 200% !important;
     }
 }

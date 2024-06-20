@@ -28,7 +28,7 @@ function Graph() {
     };
     
     return (
-        <div className='wrap'>
+        <div className='wrap graph_area'>
             <div className='flex header'>
                 <h2>KPI Graph</h2>
                 <button onClick={handlemove} className='gotoadd animate'><span></span>Add Data</button>
