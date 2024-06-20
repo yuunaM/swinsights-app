@@ -228,11 +228,6 @@ function ProfitRateGraph() {
                                 },
                                 grid: {
                                     color: '#393b4d'
-                                },
-                                title: {
-                                    display: true,
-                                    text: 'Profit',
-                                    color: '#8185ab'
                                 }
                             },
                             y2: {
