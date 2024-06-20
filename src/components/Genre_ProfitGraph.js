@@ -150,12 +150,7 @@ function Genre_ProfitGraph() {
                                 },
                                 grid: {
                                     color: '#8185ab'
-                                },
-                                title: {
-                                    display: true,
-                                    text: 'Profit',
-                                    color: '#8185ab'
-                                },
+                                }
                             },
                             x: {
                                 ticks: {

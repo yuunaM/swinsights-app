@@ -145,11 +145,6 @@ function Source_ProritGraph() {
                     options={{
                         scales: {
                             y: {
-                                title: {
-                                    display: true,
-                                    text: 'Profit',
-                                    color: '#8185ab'
-                                },
                                 beginAtZero: true,
                                 stacked: false,
                                 ticks: {

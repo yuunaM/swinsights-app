@@ -321,30 +321,27 @@ input {
         display: flex;
         margin-bottom: 2%;
     }
-
     .graph_wrap {
         width: 49%;
     }
-
+    .wrap {
+        padding: 5%;
+    }
     .addData_form {
         font-size: 22px;
     }
-
     .modal_ttr {
         font-size: 22px;
         text-align: center;
     }
-
     .ReactModal__Content {
         padding: 20px;
         width: 50%;
     }
-
     .lottie_wrap {
         width: 50%;
         margin: auto;
     }
-
     .ReactModalPortal h3 {
         font-size: 25px;
     }
@@ -368,11 +365,18 @@ input {
     .auth_area .links {
         margin: 2rem auto;
     }
+    .auth_area input::placeholder {
+        font-size: 17px;
+        color: rgb(255 255 255 / 30%);
+    }
+    .graph_wrap {
+        padding: 6%;
+    }
 }
 
 @media screen and (max-width: 768px) {
     .graph_wrap {
-        margin-bottom: 2rem;
+        margin-bottom: 1.2rem;
     }
 
     .wel_area {
@@ -385,8 +389,8 @@ input {
     }
 
     .auth_area {
-        width: 87%;
-        padding: 6% 3%;
+        width: 90%;
+        padding: 6%;
     }
 
     .lottie_wrap {
@@ -473,5 +477,8 @@ input {
         font-size: 5vw;
         width: 50%;
         padding: 4%;
+    }
+    .wave_wrap > div {
+        width: 300% !important;
     }
 }

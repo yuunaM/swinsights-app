@@ -261,14 +261,6 @@ function ProfitRateGraph() {
                                 grid: {
                                     color: 'rgba(255, 255, 255, 0.2)'
                                 }
-                            },
-                            y: {
-                                ticks: {
-                                    color: '#8185ab',
-                                    font: {
-                                        size: 14,
-                                    }
-                                }
                             }
                         },
                         plugins: {

@@ -82,23 +82,7 @@ function SourceGraph() {
                                     bodyColor: '#fff',
                                     backgroundColor: 'rgba(0, 0, 0, 0.7)',
                                 }
-                            },
-                            scales: {
-                                y: {
-                                    ticks: {
-                                        font: {
-                                            size: 14,
-                                        }
-                                    },
-                                },
-                                x: {
-                                    ticks: {
-                                        font: {
-                                            size: 14,
-                                        }
-                                    }
-                                }
-                            },
+                            }
                         }}
                     />
                 </div>
