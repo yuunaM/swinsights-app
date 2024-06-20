@@ -177,14 +177,14 @@ function ProfitRateGraph() {
                 yAxisID: 'y2',
             },
             {
-                type: 'line',
+                type: 'bar',
                 label: 'Profit',
                 data: grossProfitGraphData,
                 backgroundColor: grossProfitGradient,
                 yAxisID: 'y1',
             },
             {
-                type: 'line',
+                type: 'bar',
                 label: 'Cost',
                 data: cost,
                 backgroundColor: costGradient,

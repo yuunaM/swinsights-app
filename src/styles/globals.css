@@ -7,6 +7,7 @@ select {
     border: none;
     background: none;
     color: #ddd;
+    font-size: 22px;
 }
 
 a {
@@ -43,7 +44,7 @@ h1 {
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 600;
     line-height: 1;
     color: #b2b2b6;
@@ -60,7 +61,7 @@ h2 {
     padding: 4px 10px;
     border-radius: 2px;
     color: #ddd;
-    font-size: 14px;
+    font-size: 19px;
 }
 
 .flex.header {
@@ -126,7 +127,7 @@ input[type="number"] {
 
 .footer {
     padding: 0 3% 0;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 100;
     color: #8a8c9d;
 }
@@ -206,7 +207,7 @@ input {
 }
 
 .graph_wrap h3 {
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: #8a8c9d;
 }
 
@@ -326,11 +327,11 @@ input {
     }
 
     .addData_form {
-        font-size: 19px;
+        font-size: 22px;
     }
 
     .modal_ttr {
-        font-size: 19px;
+        font-size: 22px;
         text-align: center;
     }
 
