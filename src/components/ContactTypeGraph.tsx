@@ -32,28 +32,27 @@ export default function ContactTypeGraph() {
     ];
 
     useEffect(() => {
+        const fetchSourceData = async () => {
+            try {
+                const genreSnapshot = await getDocs(collection(db, 'data', 'by_contact', 'contact_sub'));
+                const sourceData = genreSnapshot.docs.map(doc => {
+                    return {
+                        contactType: doc.data().contactType,
+                        date: doc.data().createdAt.toDate()
+                    };
+                });
+                const groupedData = groupDataByPeriod(sourceData, CTPeriod);
+                const labels = Object.keys(groupedData).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
+                const sortedData = labels.map(label => groupedData[label]);
+    
+                setCTLabels(labels);
+                setCTGraphData(sortedData);
+            } catch (error) {
+                console.error('Error fetching genre data: ', error);
+            }
+        };
         fetchSourceData();
     }, [CTPeriod]);
-
-    const fetchSourceData = async () => {
-        try {
-            const genreSnapshot = await getDocs(collection(db, 'data', 'by_contact', 'contact_sub'));
-            const sourceData = genreSnapshot.docs.map(doc => {
-                return {
-                    contactType: doc.data().contactType,
-                    date: doc.data().createdAt.toDate()
-                };
-            });
-            const groupedData = groupDataByPeriod(sourceData, CTPeriod);
-            const labels = Object.keys(groupedData).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
-            const sortedData = labels.map(label => groupedData[label]);
-
-            setCTLabels(labels);
-            setCTGraphData(sortedData);
-        } catch (error) {
-            console.error('Error fetching genre data: ', error);
-        }
-    };
 
     const groupDataByPeriod = (data, period) => {
         const groupedData = {};
@@ -88,7 +87,7 @@ export default function ContactTypeGraph() {
 
     const createGradient = (ctx, chartArea, color1, color2) => {
         if (!ctx || !chartArea) {
-            return null; 
+            return null; // もしくは適切なデフォルト値を返す
         }
 
         const gradient = ctx.createLinearGradient(chartArea.left, 0, chartArea.right, 0);

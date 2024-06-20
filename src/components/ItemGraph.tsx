@@ -27,6 +27,30 @@ export default function ItemGraph() {
     const chartRef = useRef(null);
 
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const snapShot = await getDocs(collection(db, 'data', 'genre_profit', 'profit'));
+                const dataSet = snapShot.docs.map(doc => {
+                    if(doc.data().createdAt) {
+                        return {
+                            genre: doc.data().genre,
+                            date: doc.data().createdAt.toDate()
+                        }
+                    }
+                    return null; // Timestampフィールドが存在しない場合はnullを返す
+                }).filter(item => item !== null); // Timestampフィールドが存在しない配列を除外
+    
+                const groupData = groupDataPeriod(dataSet, ItemPeriod);
+                const labels = Object.keys(groupData).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
+                const sortedData = labels.map(label => groupData[label]);
+    
+                setItemLavel(labels);
+                setItemData(sortedData);
+    
+            } catch (erro) {
+                console.log(erro);
+            }
+        }
         fetchData();
     }, [ItemPeriod])
 
@@ -34,31 +58,6 @@ export default function ItemGraph() {
         { start: 'rgba(89, 242, 199, 1)', end: 'rgba(47, 114, 212, 1)', point: '#21e59c' }, // Gem用のグラデーション
         { start: 'rgba(242, 89, 89, 1)', end: 'rgba(121, 47, 212, 1)', point: '#f25989' }  // Parts用のグラデーション
     ];
-
-    const fetchData = async () => {
-        try {
-            const snapShot = await getDocs(collection(db, 'data', 'genre_profit', 'profit'));
-            const dataSet = snapShot.docs.map(doc => {
-                if(doc.data().createdAt) {
-                    return {
-                        genre: doc.data().genre,
-                        date: doc.data().createdAt.toDate()
-                    }
-                }
-                return null; // Timestampフィールドが存在しない場合はnullを返す
-            }).filter(item => item !== null); // Timestampフィールドが存在しない配列を除外
-
-            const groupData = groupDataPeriod(dataSet, ItemPeriod);
-            const labels = Object.keys(groupData).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
-            const sortedData = labels.map(label => groupData[label]);
-
-            setItemLavel(labels);
-            setItemData(sortedData);
-
-        } catch (erro) {
-            console.log(erro);
-        }
-    }
 
     const groupDataPeriod = (data, period) => {
         const dayGroupdata = {};

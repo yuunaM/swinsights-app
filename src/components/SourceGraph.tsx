@@ -10,11 +10,8 @@ export default function SourceGraph() {
     const [sourceData, setSourceData] = useState([]);
 
     useEffect(() => {
-        fetchSourceData();
-    }, []);
-
-    // dbからデータを取得
-    const fetchSourceData = async () => {
+        // dbからデータを取得
+        const fetchSourceData = async () => {
         try {
             const onSnapshot = await getDocs(collection(db, 'data', 'source_profit', 'profit'));
             const graphData = onSnapshot.docs.map((doc) => {
@@ -28,6 +25,8 @@ export default function SourceGraph() {
             console.error('Error fetching data:', error);
         }
     }
+        fetchSourceData();
+    }, []);
 
     // 各値の合計値を算出し、配列として返す
     const totalValCal = (data) => {

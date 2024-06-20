@@ -30,36 +30,35 @@ export default function Source_ProritGraph() {
     ];
 
     useEffect(() => {
+        const fetchSourceData = async () => {
+            try {
+                // data > genre_profit内のコレクションデータを全てを取得しgenreSnapshotに代入
+                const genreSnapshot = await getDocs(collection(db, 'data', 'source_profit', 'profit')); 
+                // genreSnapshot.docs（ドキュメントのID、パス、メタデータ、ドキュメントのフィールドとその値）からdoc（ドキュメントのフィールドとその値）のみを取り出し配列化
+                const sourceData = genreSnapshot.docs.map(doc => { 
+                    const data = doc.data();
+                    if (data.createdAt) { // createdAtフィールド（Timestamp）が存在するか
+                        return {
+                            source: data.source,
+                            profit: data.profit,
+                            date: data.createdAt.toDate()
+                        };
+                    }
+                    return null; // Timestampフィールドが存在しない場合はnullを返す
+                }).filter(item => item !== null); // Timestampフィールドが存在しない配列を除外
+    
+                const groupedData = groupDataByPeriod(sourceData, sourcePeriod);
+                const labels = Object.keys(groupedData).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());// ラベルを日付順にソート
+                const sortedData = labels.map(label => groupedData[label]); // ソートされたラベルに従ってデータを並び替える
+    
+                setSourceLabels(labels); // 日付順にソートされたデータをステートにセットし更新。グラフ描画時のlabelsで呼び出す
+                setSourceGraphData(sortedData); // ソートされたデータをステートにセットし更新。グラフ描画時のdatasetsで呼び出す
+            } catch (error) {
+                console.error('Error fetching genre data: ', error);
+            }
+        };
         fetchSourceData();
     }, [sourcePeriod]);
-
-    const fetchSourceData = async () => {
-        try {
-            // data > genre_profit内のコレクションデータを全てを取得しgenreSnapshotに代入
-            const genreSnapshot = await getDocs(collection(db, 'data', 'source_profit', 'profit')); 
-            // genreSnapshot.docs（ドキュメントのID、パス、メタデータ、ドキュメントのフィールドとその値）からdoc（ドキュメントのフィールドとその値）のみを取り出し配列化
-            const sourceData = genreSnapshot.docs.map(doc => { 
-                const data = doc.data();
-                if (data.createdAt) { // createdAtフィールド（Timestamp）が存在するか
-                    return {
-                        source: data.source,
-                        profit: data.profit,
-                        date: data.createdAt.toDate()
-                    };
-                }
-                return null; // Timestampフィールドが存在しない場合はnullを返す
-            }).filter(item => item !== null); // Timestampフィールドが存在しない配列を除外
-
-            const groupedData = groupDataByPeriod(sourceData, sourcePeriod);
-            const labels = Object.keys(groupedData).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());// ラベルを日付順にソート
-            const sortedData = labels.map(label => groupedData[label]); // ソートされたラベルに従ってデータを並び替える
-
-            setSourceLabels(labels); // 日付順にソートされたデータをステートにセットし更新。グラフ描画時のlabelsで呼び出す
-            setSourceGraphData(sortedData); // ソートされたデータをステートにセットし更新。グラフ描画時のdatasetsで呼び出す
-        } catch (error) {
-            console.error('Error fetching genre data: ', error);
-        }
-    };
 
     const groupDataByPeriod = (data, period) => {
         const dayGroupdata = {};

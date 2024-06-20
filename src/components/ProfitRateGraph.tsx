@@ -34,51 +34,50 @@ export default function ProfitRateGraph() {
     ];
  
     useEffect(() => {
+        const fetchProfitData = async () => {
+            try {
+                const snapshot = await getDocs(collection(db, 'data', 'ProfitRate', 'ProfitRate_sub'));
+                const genreData = snapshot.docs.map(doc => { 
+                    const data = doc.data();
+                    if (data.createdAt) {
+                        return {
+                            amount: data.amount,
+                            profit: data.profit,
+                            cost: data.cost,
+                            date: data.createdAt
+                        };
+                    }
+                    return null; // Timestampフィールドが存在しない場合はnullを返す
+                }).filter(item => item !== null); // Timestampフィールドが存在しない配列を除外
+    
+                const groupedData = groupDataByPeriod(genreData, profitPeriod); // 日付順に並べた売上、粗利、仕入れ値のデータ配列
+                const labels = Object.keys(groupedData).sort((a, b) => new Date(a).getTime() - new Date(b).getTime()); // 日付をソート
+                const profitMargins = labels.map((label) => {
+                    const data = groupedData[label]; // 日付毎の配列データを取得
+                    return calculateMargin(data); // 配列データ毎にcalculateMargin関数を実行し、その結果を返す
+                });
+    
+                const grossProfits = labels.map((label) => {
+                    const data = groupedData[label];
+                    return calculateTotalGrossProfit(data);
+                });
+    
+                const costData = labels.map((label) => {
+                    const data = groupedData[label];
+                    return fetchCost(data);
+                })
+    
+                setCost(costData);
+                setProfitLabels(labels);
+                setProfitGraphData(profitMargins);
+                setGrossProfitGraphData(grossProfits);
+    
+            } catch (error) {
+                console.error('Error fetching profit data: ', error);
+            }
+        };
         fetchProfitData();
     }, [profitPeriod]);
-
-    const fetchProfitData = async () => {
-        try {
-            const snapshot = await getDocs(collection(db, 'data', 'ProfitRate', 'ProfitRate_sub'));
-            const genreData = snapshot.docs.map(doc => { 
-                const data = doc.data();
-                if (data.createdAt) {
-                    return {
-                        amount: data.amount,
-                        profit: data.profit,
-                        cost: data.cost,
-                        date: data.createdAt
-                    };
-                }
-                return null; // Timestampフィールドが存在しない場合はnullを返す
-            }).filter(item => item !== null); // Timestampフィールドが存在しない配列を除外
-
-            const groupedData = groupDataByPeriod(genreData, profitPeriod); // 日付順に並べた売上、粗利、仕入れ値のデータ配列
-            const labels = Object.keys(groupedData).sort((a, b) => new Date(a).getTime() - new Date(b).getTime()); // 日付をソート
-            const profitMargins = labels.map((label) => {
-                const data = groupedData[label]; // 日付毎の配列データを取得
-                return calculateMargin(data); // 配列データ毎にcalculateMargin関数を実行し、その結果を返す
-            });
-
-            const grossProfits = labels.map((label) => {
-                const data = groupedData[label];
-                return calculateTotalGrossProfit(data);
-            });
-
-            const costData = labels.map((label) => {
-                const data = groupedData[label];
-                return fetchCost(data);
-            })
-
-            setCost(costData);
-            setProfitLabels(labels);
-            setProfitGraphData(profitMargins);
-            setGrossProfitGraphData(grossProfits);
-
-        } catch (error) {
-            console.error('Error fetching profit data: ', error);
-        }
-    };
 
     const groupDataByPeriod = (data, profitPeriod) => {
         const groupedData = {};

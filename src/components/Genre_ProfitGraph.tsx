@@ -26,15 +26,7 @@ export default function Genre_ProfitGraph() {
     const chartRef = useRef(null);
 
     useEffect(() => {
-        fetchData();
-    }, [genrePeriod]);
-
-    const GraphGradients = [
-        { start: '#f4ff16', end: '#2fd4b5' },  // Parts用のグラデーション
-        { start: '#39ceff', end: '#9b39ff' }  // Gem用のグラデーション
-    ];
-
-    const fetchData = async () => {
+        const fetchData = async () => {
         try {
             const snapshot = await getDocs(collection(db, 'data', 'genre_profit', 'profit'));
             const dataSet = snapshot.docs.map(doc => {
@@ -60,6 +52,13 @@ export default function Genre_ProfitGraph() {
             console.error('Error fetching data: ', error);
         }
     };
+        fetchData();
+    }, [genrePeriod]);
+
+    const GraphGradients = [
+        { start: '#f4ff16', end: '#2fd4b5' },  // Parts用のグラデーション
+        { start: '#39ceff', end: '#9b39ff' }  // Gem用のグラデーション
+    ];
 
     const groupDataByPeriod = (data, period) => {
         const dayGroupData = {};
