@@ -7,7 +7,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import WaveAnimate from '../components/WaveAnimate';
 import Loading from '../components/Loading';
 
-export default function Signup() {
+function Signup() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -80,3 +80,4 @@ export default function Signup() {
         </div>
     );
 }
+export default Signup

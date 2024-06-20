@@ -19,7 +19,7 @@ const getYearStartDate = (date) => {
     return moment(date).startOf('year').format('YYYY-MM-DD');
 };
 
-export default function ProfitRateGraph() {
+function ProfitRateGraph() {
     const [profitGraphData, setProfitGraphData] = useState([]);
     const [profitLabels, setProfitLabels] = useState([]);
     const [profitPeriod, setProfitPeriod] = useState('week');
@@ -297,3 +297,4 @@ export default function ProfitRateGraph() {
         </div>
     );
 }
+export default ProfitRateGraph

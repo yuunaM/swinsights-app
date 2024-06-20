@@ -12,7 +12,7 @@ import Loading from '../components/Loading';
 Modal.setAppElement('#__next');
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 
-export default function AddData() {
+function AddData() {
     const { currentUser } = useAuth();
     const router = useRouter();
     const [contactType, setContactType] = useState(''); // 問い合わせ種類
@@ -197,4 +197,4 @@ export default function AddData() {
     );
 }
 
-
+export default AddData

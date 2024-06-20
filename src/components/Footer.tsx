@@ -5,7 +5,7 @@ import { auth } from '../config/firebase';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-export default function Footer() {
+function Footer() {
     const { currentUser } = useAuth();
     const router = useRouter();
 
@@ -27,3 +27,4 @@ export default function Footer() {
         </div>
     );
 }
+export default Footer

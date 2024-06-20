@@ -19,7 +19,7 @@ const getYearStartDate = (date) => {
     return moment(date).startOf('year').format('YYYY-MM-DD');
 };
 
-export default function ContactTypeGraph() {
+function ContactTypeGraph() {
     const [CTGraphData, setCTGraphData] = useState([]);
     const [CTLabels, setCTLabels] = useState([]);
     const [CTPeriod, setCTPeriod] = useState('week');
@@ -207,3 +207,4 @@ export default function ContactTypeGraph() {
         </div>
     );
 }
+export default ContactTypeGraph

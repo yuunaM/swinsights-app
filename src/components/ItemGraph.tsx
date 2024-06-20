@@ -20,7 +20,7 @@ const getYearStartDate = (date: Timestamp) => {
 
 ChartJS.register(CategoryScale, Filler, LinearScale, BarElement, Title, Tooltip, Legend);
 
-export default function ItemGraph() {
+function ItemGraph() {
     const [itemData, setItemData] = useState([]);
     const [itemLavel, setItemLavel] = useState([]);
     const [ItemPeriod, setItemPeriod] = useState('week');
@@ -192,3 +192,4 @@ export default function ItemGraph() {
     </div>
     );
 }
+export default ItemGraph

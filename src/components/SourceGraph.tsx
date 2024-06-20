@@ -6,7 +6,7 @@ import { Chart, ArcElement } from 'chart.js';
 
 Chart.register(ArcElement);
 
-export default function SourceGraph() {
+function SourceGraph() {
     const [sourceData, setSourceData] = useState([]);
 
     useEffect(() => {
@@ -92,3 +92,4 @@ export default function SourceGraph() {
         </div>
     );
 }
+export default SourceGraph

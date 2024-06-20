@@ -9,7 +9,7 @@ import ProfitRateGraph from '../components/ProfitRateGraph';
 import SourceGraph from '../components/SourceGraph';
 import ItemGraph from '../components/ItemGraph';
 
-export default function Graph() {
+function Graph() {
     const { currentUser } = useAuth(); // 認証ユーザー情報の取得
     const router = useRouter(); // routerをインストール
 
@@ -49,3 +49,4 @@ export default function Graph() {
         </div>
     );
 }
+export default Graph

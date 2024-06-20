@@ -19,7 +19,7 @@ const getYearStartDate = (date) => {
     return moment(date).startOf('year').format('YYYY-MM-DD');
 };
 
-export default function Genre_ProfitGraph() {
+function Genre_ProfitGraph() {
     const [genreData, setGnreData] = useState([]);
     const [genreLabels, setGenreLabels] = useState([]);
     const [genrePeriod, setGenrePeriod] = useState('week');
@@ -195,3 +195,4 @@ export default function Genre_ProfitGraph() {
         </div>
     );
 }
+export default Genre_ProfitGraph

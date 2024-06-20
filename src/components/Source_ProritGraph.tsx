@@ -17,7 +17,7 @@ const getYearStartDate = (date) => {
     return moment(date).startOf('year').format('YYYY-MM-DD');
 };
 
-export default function Source_ProritGraph() {
+function Source_ProritGraph() {
     const [sourceGraphData, setSourceGraphData] = useState([]);
     const [sourceLabels, setSourceLabels] = useState([]); // グラフX軸用ラベル
     const [sourcePeriod, setSourcePeriod] = useState('week'); // 期間のステート
@@ -196,3 +196,4 @@ export default function Source_ProritGraph() {
         </div>
     )
 }
+export default Source_ProritGraph
