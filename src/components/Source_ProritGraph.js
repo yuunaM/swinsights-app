@@ -153,7 +153,10 @@ function Source_ProritGraph() {
                                 beginAtZero: true,
                                 stacked: false,
                                 ticks: {
-                                    color: '#8185ab'
+                                    color: '#8185ab',
+                                    font: {
+                                        size: 14,
+                                    }
                                 },
                                 grid: {
                                     color: '#8185ab'
@@ -161,7 +164,10 @@ function Source_ProritGraph() {
                             },
                             x: {
                                 ticks: {
-                                    color: '#8185ab'
+                                    color: '#8185ab',
+                                    font: {
+                                        size: 14,
+                                    }
                                 },
                                 grid: {
                                     color: 'rgba(255, 255, 255, 0.2)'
