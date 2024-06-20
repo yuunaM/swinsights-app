@@ -5,16 +5,16 @@ import { Chart as ChartJS, Filler, CategoryScale, LinearScale, BarElement, Title
 import { Line } from 'react-chartjs-2';
 import moment from 'moment';
 
-const getWeekStartDate = (date: Timestamp) => {
+const getWeekStartDate = (date) => {
     // Timestamp情報をmoment式に変換し、その日が含まれる週の月曜日を返す。
     return moment(date).startOf('isoWeek').format('YYYY-MM-DD');
 };
 
-const getMonthStartDate = (date: Timestamp) => {
+const getMonthStartDate = (date) => {
     return moment(date).startOf('month').format('YYYY-MM-DD');
 };
 
-const getYearStartDate = (date: Timestamp) => {
+const getYearStartDate = (date) => {
     return moment(date).startOf('year').format('YYYY-MM-DD');
 };
 

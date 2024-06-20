@@ -164,7 +164,7 @@ function ProfitRateGraph() {
     
         return [
             {
-                type: 'line' as const,
+                type: 'line',
                 label: 'Profit rate(%)',
                 data: profitGraphData,
                 borderColor: profitMarginGradient,
@@ -177,14 +177,14 @@ function ProfitRateGraph() {
                 yAxisID: 'y2',
             },
             {
-                type: 'line' as const,
+                type: 'line',
                 label: 'Profit',
                 data: grossProfitGraphData,
                 backgroundColor: grossProfitGradient,
                 yAxisID: 'y1',
             },
             {
-                type: 'line' as const,
+                type: 'line',
                 label: 'Cost',
                 data: cost,
                 backgroundColor: costGradient,
