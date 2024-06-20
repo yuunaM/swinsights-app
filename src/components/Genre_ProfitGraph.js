@@ -143,7 +143,10 @@ function Genre_ProfitGraph() {
                             y: {
                                 beginAtZero: true,
                                 ticks: {
-                                    color: '#8185ab'
+                                    color: '#8185ab',
+                                    font: {
+                                        size: 14,
+                                    }
                                 },
                                 grid: {
                                     color: '#8185ab'
@@ -156,7 +159,10 @@ function Genre_ProfitGraph() {
                             },
                             x: {
                                 ticks: {
-                                    color: '#8185ab'
+                                    color: '#8185ab',
+                                    font: {
+                                        size: 14,
+                                    }
                                 },
                                 grid: {
                                     color: 'rgba(255, 255, 255, 0.2)'

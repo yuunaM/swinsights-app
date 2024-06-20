@@ -160,7 +160,7 @@ function ContactTypeGraph() {
                                 ticks: {
                                     color: '#8185ab',
                                     font: {
-                                        size: 20,
+                                        size: 14,
                                     }
                                 },
                                 grid: {
@@ -171,7 +171,7 @@ function ContactTypeGraph() {
                                 ticks: {
                                     color: '#8185ab',
                                     font: {
-                                        size: 20,
+                                        size: 14,
                                     }
                                 },
                                 grid: {
