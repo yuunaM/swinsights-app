@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
-import loading from '../../public/loading.json';
+// import loading from '../../public/loading.json';
+import triangle from '../../public/triangle.json';
 
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 
@@ -17,7 +18,7 @@ const Loading = () => {
   
     return (
         <div className='loading_wrap'>
-            <Lottie animationData={loading} />
+            <Lottie animationData={triangle} />
         </div>
     )
 };

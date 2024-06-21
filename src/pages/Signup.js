@@ -6,6 +6,8 @@ import { useAuth } from '../context/AuthContext';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import WaveAnimate from '../components/WaveAnimate';
 import Loading from '../components/Loading';
+import Image from 'next/image';
+import triangleSvg from '../../public/triangle.svg';
 
 function Signup() {
     const [name, setName] = useState('');
@@ -51,6 +53,7 @@ function Signup() {
                 <Loading />
             ) : (
                 <>
+                    <Image src={triangleSvg} alt='triangleSvg' className='triangle_wrap' />
                     <div className='auth_area' ref={authAreaRef}>
                         <h2>Sign UP</h2>
                         <form onSubmit={handleSubmit}>

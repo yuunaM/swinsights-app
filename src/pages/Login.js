@@ -7,6 +7,8 @@ import { useAuth } from '../context/AuthContext';
 import { useRouter } from 'next/router';
 import WaveAnimate from '../components/WaveAnimate';
 import Loading from '../components/Loading';
+import Image from 'next/image';
+import triangleSvg from '../../public/triangle.svg';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -55,6 +57,7 @@ function Login() {
                 <Loading />
             ) : (
                 <>
+                    <Image src={triangleSvg} alt='triangleSvg' className='triangle_wrap' />
                     <div className='auth_area' ref={authAreaRef}>
                         <h2>Log In</h2>
                         <form onSubmit={handleSubmit}>

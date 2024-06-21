@@ -23,7 +23,8 @@ body {
 
 body,
 button,
-select {
+select,
+.auth_area input::placeholder {
     font-family: "Titillium Web", sans-serif;
 }
 
@@ -39,7 +40,7 @@ select {
 h1 {
     color: #8185ab;
     font-weight: 400;
-    font-size: 2.5rem;
+    font-size: 3rem;
     line-height: 1.2;
 }
 
@@ -323,11 +324,14 @@ input {
 }
 
 .auth_area input::placeholder {
-    font-size: 17px;
+    font-size: 15px;
     color: rgb(255 255 255 / 30%);
     letter-spacing: 1px;
 }
 
+.triangle_wrap {
+    position: absolute;
+}
 
 
 
@@ -338,9 +342,6 @@ input {
     }
     .graph_wrap {
         width: 49%;
-    }
-    .wrap {
-        padding: 5%;
     }
     .addData_form {
         font-size: 22px;
@@ -379,6 +380,13 @@ input {
     }
     .auth_area .links {
         margin: 2rem auto;
+    }
+    .triangle_wrap {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 8%;
+        margin: auto;
     }
 }
 
@@ -474,6 +482,12 @@ input {
     }
     .wrap.graph_area {
         padding: 3%;
+    }
+    h1 {
+        font-size: 11vw;
+    }
+    .wrap {
+        padding: 5%;
     }
 }
 

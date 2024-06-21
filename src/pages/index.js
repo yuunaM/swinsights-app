@@ -4,6 +4,9 @@ import { useAuth } from '../context/AuthContext';
 import { useRouter } from 'next/router';
 import { Typewriter } from 'react-simple-typewriter';
 import WaveAnimate from '../components/WaveAnimate'
+import triangle from '../../public/triangle';
+import Image from 'next/image';
+import triangleSvg from '../../public/triangle.svg';
 
 export default function Home() {
     const { currentUser } = useAuth();
@@ -27,6 +30,7 @@ export default function Home() {
 
   return (
       <div className='auth_wrap'>
+         <Image src={triangleSvg} alt='triangleSvg' className='triangle_wrap' />
          <div className='auth_area wel' ref={authAreaRef}>
          <h1><Typewriter
              words={['Wellcome to', 'SwinSightS']}

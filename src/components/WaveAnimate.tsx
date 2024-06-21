@@ -5,15 +5,15 @@ import wave from '../../public/wave.json';
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 
 const WaveAnimate = () => {
-    const [isClient, setIsClient] = useState(false);
+    // const [isClient, setIsClient] = useState(false);
 
-    useEffect(() => {
-        setIsClient(true);
-    }, []);
+    // useEffect(() => {
+    //     setIsClient(true);
+    // }, []);
 
-    if (!isClient) {
-        return null;
-    }
+    // if (!isClient) {
+    //     return null;
+    // }
   
     return (
         <div className='wave_wrap'>
