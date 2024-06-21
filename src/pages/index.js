@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useAuth } from '../context/AuthContext';
 import { useRouter } from 'next/router';
+import { Typewriter } from 'react-simple-typewriter';
 import WaveAnimate from '../components/WaveAnimate'
 
 export default function Home() {
@@ -18,7 +19,7 @@ export default function Home() {
           });
       }
   }, []);
-  
+
     if (currentUser) {
         router.push('/Graph');
         return null;
@@ -27,7 +28,16 @@ export default function Home() {
   return (
       <div className='auth_wrap'>
          <div className='auth_area wel' ref={authAreaRef}>
-            <h1>Wellcome to<br />SwinSightS</h1>
+         <h1><Typewriter
+             words={['Wellcome to', 'SwinSightS']}
+             loop={1}
+             cursor
+             cursorStyle='|'
+             typeSpeed={150}
+             deleteSpeed={100}
+             delaySpeed={800}
+             cursorClassName="typewriter-cursor"
+          /></h1>
             <Link href='/Login' className='links animate'><span></span>Login</Link>
             <p style={{color: '#8185ab'}}>- or -</p>
             <Link href='/Signup' className='links animate'><span></span>Sign up</Link>
