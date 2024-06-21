@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebase';
 import Link from 'next/link';
@@ -13,14 +13,14 @@ function Login() {
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const { currentUser } = useAuth(); // AuthContext.Providerから渡された'currentUser'(つまりログイン中のユーザーの情報)を取得
-    const user = useContext(AuthContext);
+    const authAreaRef = useRef(null);
     const router = useRouter(); // useRouterフックを使ってルーターオブジェクトを取得
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         try {
-            await signInWithEmailAndPassword(auth, email, password) // 入力された情報をFirebase authに照会し、一致するユーザー情報があるか確認
+            await signInWithEmailAndPassword(auth, email, password); // 入力された情報をFirebase authに照会し、一致するユーザー情報があるか確認
             router.push('/Graph'); // ログインできればGraphへ移動
         } catch (error) {
             console.error("Error logging in: ", error);
@@ -29,8 +29,23 @@ function Login() {
         }
     }
 
-    if (currentUser) { // 既存ログインユーザーはGraphへ移動
-        router.push('/Graph');
+    useEffect(() => {
+        if (currentUser) { // 既存ログインユーザーはGraphへ移動
+            router.push('/Graph');
+        }
+    }, [currentUser, router]);
+
+    useEffect(() => {
+        if (authAreaRef.current) {
+            requestAnimationFrame(() => {
+                if (authAreaRef.current) {
+                    authAreaRef.current.classList.add('fade-Up');
+                }
+            });
+        }
+    }, []);
+
+    if (currentUser) {
         return null;
     }
 
@@ -40,7 +55,7 @@ function Login() {
                 <Loading />
             ) : (
                 <>
-                    <div className='auth_area'>
+                    <div className='auth_area' ref={authAreaRef}>
                         <h2>Log In</h2>
                         <form onSubmit={handleSubmit}>
                             <div>
@@ -73,4 +88,5 @@ function Login() {
         </div>
     )
 }
-export default Login
+
+export default Login;

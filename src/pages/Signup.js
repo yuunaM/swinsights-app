@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { auth } from '../config/firebase';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -14,6 +14,7 @@ function Signup() {
     const [loading, setLoading] = useState(false);
     const { currentUser } = useAuth(); // AuthContext.Providerから渡された'currentUser'(つまりログイン中のユーザーの情報)を取得
     const router = useRouter(); // useRouterフックを使ってルーターオブジェクトを取得
+    const authAreaRef = useRef(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -29,6 +30,16 @@ function Signup() {
         }
     }
 
+    useEffect(() => {
+        if (authAreaRef.current) {
+            requestAnimationFrame(() => {
+                if (authAreaRef.current) {
+                    authAreaRef.current.classList.add('fade-Up');
+                }
+            });
+        }
+    }, []);
+
     if (currentUser) {
         router.push('/Graph');
         return null;
@@ -40,7 +51,7 @@ function Signup() {
                 <Loading />
             ) : (
                 <>
-                    <div className='auth_area'>
+                    <div className='auth_area' ref={authAreaRef}>
                         <h2>Sign UP</h2>
                         <form onSubmit={handleSubmit}>
                             <div>

@@ -152,6 +152,9 @@ input[type="number"] {
     box-shadow: 0 25px 20px -28px #000000;
     border-radius: 3px;
     z-index: 5;
+    transition: .8s;
+    transform: translateY(15px);
+    opacity: 0;
 }
 
 .auth_area h2 {
@@ -312,6 +315,11 @@ input {
 
 .loading_wrap div {
     width: 40%;
+}
+
+.fade-Up {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 
